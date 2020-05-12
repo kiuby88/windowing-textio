@@ -73,7 +73,7 @@ public class PipelineWithTextIo {
                 .apply(MapElements.into(TypeDescriptor.of(String.class)).via(String::valueOf))
                 .apply(fixedWindow(lateness))
                 .apply(Distinct.create())
-                .apply(delay(5_000L))
+                .apply(delay(10_000L))
                 .apply(writeData)
                 .getPerDestinationOutputFilenames()
 
