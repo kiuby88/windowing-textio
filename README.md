@@ -1,11 +1,9 @@
 # Testing Windowing with TextIO
 
-#### Build
-`mvn clean install`
-
-#### Run
+#### Build and Run 
 Run pipeline without lateness in the window
 ```
+mvn clean install
 java -cp target/windowing-textio-bundled-1.0-SNAPSHOT.jar org.kby.PipelineWithTextIo
 ```
 
