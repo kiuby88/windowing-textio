@@ -24,13 +24,12 @@ behind inputWatermark:2020-05-12T14:05:19.799Z;
 outputWatermark:2020-05-12T14:05:19.799Z`
 ```
 
-#### Improved results
-Maybe, finding log traces to check that data are missing is not the easyest way. Then, I added a second `TypeWriter` to write the file names as other files in the folder `files-after-distinct`. <br />
-Files names in `emitted-files` and `files-after-distinct` **should be the same**. But in following picture you can see they are not, because files are discarded:
+#### Showing data loss
+Maybe, finding log traces to check that data are missing is not the easyest way.<br /> 
+Then, I added a second `TypeWriter` to write the file names as other files in the folder `files-after-window`. <br />
+As result, file names in `emitted-files` and `files-after-distinct` **should be the same**. But in following picture you can see they are not, because files are discarded:
 
 ![image](https://i.ibb.co/RQd78yS/dataloss.png)
-
-
 
 
 #### Run with lateness
