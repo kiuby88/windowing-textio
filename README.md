@@ -1,12 +1,5 @@
 # Testing Windowing with TextIO
 
-#### Scenario to reproduce
-This project provides a simple example to check the following scenario:
-- TextIO write files.
-- [getPerDestinationOutputFilenames](https://beam.apache.org/releases/javadoc/2.2.0/org/apache/beam/sdk/io/WriteFilesResult.html#getPerDestinationOutputFilenames--) emits file names
-- File names are processed by a aggregator (combine, distinct, groupbyKey...) with a window **without allowlateness**
-- File names are discardad as late
-
 #### Build and Run 
 Run pipeline without lateness in the window
 ```
@@ -34,6 +27,8 @@ outputWatermark:2020-05-12T14:05:19.799Z`
 #### Improved results
 Maybe, finding log traces to check that data are missing is not the easyest way. Then, I added a second `TypeWriter` to write the file names as other files in the folder `files-after-distinct`. <br />
 Files names in `emitted-files` and `files-after-distinct` **should be the same**. But in following picture you can see they are not, because files are discarded:
+
+![image](https://i.ibb.co/RQd78yS/dataloss.png)
 
 
 
