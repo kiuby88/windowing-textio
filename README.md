@@ -30,7 +30,7 @@ Then, I added a second `TypeWriter` to write the file names as other files in th
 
 As result, file names in `emitted-files` and `files-after-window` **should be the same**. But in following picture you can see they are not, because files are discarded:
 
-![image](https://i.ibb.co/RQd78yS/dataloss.png)
+![image](https://i.ibb.co/rwMFZ6P/dataloss.png)
 
 
 #### Run with lateness
