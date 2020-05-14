@@ -34,7 +34,7 @@ As result, file names in `emitted-files` and `files-after-distinct` **should be 
 
 
 #### Run with lateness
-Pass an lateness values in seconds using an arg. For example, to use 60 seconds
+You can pass a lateness value (in seconds) using args. For example, to use 60 seconds
 ```
 java -cp target/windowing-textio-bundled-1.0-SNAPSHOT.jar org.kby.PipelineWithTextIo 60
 ```
