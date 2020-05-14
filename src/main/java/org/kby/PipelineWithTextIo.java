@@ -29,13 +29,12 @@ import static org.apache.beam.sdk.transforms.SerializableFunctions.identity;
 import static org.joda.time.Duration.ZERO;
 import static org.joda.time.Duration.standardSeconds;
 
-
 public class PipelineWithTextIo {
 
     private static final Logger log = org.slf4j.LoggerFactory.getLogger(PipelineWithTextIo.class);
 
-    private static final String FILES_FOLDER = "pipe_with_lateness_%ss/files";
-    private static final String FILES_AFTER_DISTINCT_FOLDER = "pipe_with_lateness_%ss/files-after-distinct";
+    private static final String FILES_FOLDER = "pipe_with_lateness_%ss/emitted-files";
+    private static final String FILES_AFTER_DISTINCT_FOLDER = "pipe_with_lateness_%ss/files-after-window";
 
     private static final ResourceId temp = FileSystems.matchNewResource("temp", true);
 
@@ -73,7 +72,7 @@ public class PipelineWithTextIo {
                 .apply(MapElements.into(TypeDescriptor.of(String.class)).via(String::valueOf))
                 .apply(fixedWindow(lateness))
                 .apply(Distinct.create())
-                .apply(delay(10_000L))
+                .apply(delay(5_000L))
                 .apply(writeData)
                 .getPerDestinationOutputFilenames()
 
@@ -102,7 +101,7 @@ public class PipelineWithTextIo {
         return ParDo.of(new DoFn<String, String>() {
             @ProcessElement
             public void processElement(ProcessContext context, BoundedWindow boundedWindow) {
-                log.info("[lens] [{}] element = {} in window = {}, timestamp = {}, pane = {}, index ={}, timing ={}, isFirst ={}, isLast={}",
+                log.info("[{}] element={} in window={}, timestamp={}, pane={}, index ={}, timing ={}, isFirst ={}, isLast={}",
                         message,
                         context.element(),
                         boundedWindow,
